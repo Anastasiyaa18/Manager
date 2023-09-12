@@ -41,7 +41,7 @@ public class ManagerTest {
     }
 
     @Test
-    public void findFiveLastFilm() {
+    public void findFilmEqualsLimit() {
         FilmManager manager = new FilmManager(5);
 
         manager.add("Бладшот");
@@ -57,8 +57,8 @@ public class ManagerTest {
     }
 
     @Test
-    public void findThreeLastFilm() {
-        FilmManager manager = new FilmManager();
+    public void findFilmLessLimit() {
+        FilmManager manager = new FilmManager(5);
 
         manager.add("Бладшот");
         manager.add("Вперёд");
@@ -70,5 +70,21 @@ public class ManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
 
+    }
+    @Test
+    public void findFilmMoreLimit() {
+        FilmManager manager = new FilmManager(5);
+
+        manager.add("Бладшот");
+        manager.add("Вперёд");
+        manager.add("Отель Белград");
+        manager.add("Джентельмены");
+        manager.add("Человек-невидимка");
+        manager.add("Гарри Поттер");
+
+        String[] expected = {"Гарри Поттер","Человек-невидимка", "Джентельмены", "Отель Белград", "Вперёд"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 }
